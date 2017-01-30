@@ -18,7 +18,7 @@ void main() {
     
     i = 0, pnumber = 0, unsafe = 0;
     
-    for (i = 0; i < MAX_PROCESSES ; i++) {
+    do {
         int flagOK = i;  
         un
         for (k = 0; k < MAX_PROCESSES ; k++) {
@@ -46,7 +46,7 @@ void main() {
                 }
             }
         }
-    }
+    } while (unsafe == 1 || )
     printf("\nSafe order.");
     for (i = 0; i < MAX_PROCESSES ; i++) printf(" %d", safeorder[pnumber]);
 }
