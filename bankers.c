@@ -1,60 +1,49 @@
-#incliude<stdio.h>
+#include<stdio.h>
 
 #define MAX_RESOURCES   10
 #define MAX_PROCESSES   10
 
 void main() {
-    int no_resources, no_processes;
-    int r_total[MAX_RESOURCES] = { };
-    int r_run[MAX_RESOURCES];
-    int r_maximum[MAX_PROCESSES][MAX_RESOURCES];
-    int r_allocation[MAX_PROCESSES][MAX_RESOURCES];
-    int r_need[MAX_PROCESSES][MAX_RESOURCES];
-    int r_available[MAX_RESOURCES];
-    
-    int safestate = false;
-    int safeorder[MAX_PROCESSES];
-        
-    int i, j;
-    int sum;
-    int flag;
-    
-    for (i = 0; i < MAX_RESOURCES; i++) r_run[i] = 0;
-    for (i = 0; i < MAX_RESOURCES; i++) {
-        sum = 0;
-        for (j = 0; j < MAX_PROCESSES; j++) {
-             sum = sum + r_allocated[j][i];
-        }    
-        r_available[i] = r_total[MAX_RESOURCES] - sum;
-    }
+    int available[MAX_RESOURCES];
+    int max[MAX_PROCESSES][MAX_RESOURCES];
+    int allocation[MAX_PROCESSES][MAX_RESOURCES];
+    int need[MAX_PROCESSES][MAX_RESOURCES];
+    int work[MAX_RESOURCES];    
+    int finish[MAX_PROCESSES];
 
-    for (i = 0; i < MAX_PROCESSES ; i++) {
-        for (j = 0; j < MAX_RESOURCES; j++) {
-             r_need[i][j] = r_required[i][j] - r_allocated[i][j];
-        }    
-    } 
-
-    int pnumber = 0;
+    int i, j, k, l;
+    
+    for (i = 0; i < MAX_RESOURCES; i++) work[i] = available[i];
+    for (i = 0; i < MAX_PROCESSES; i++) finish[i] = 0;
+    
+    i = 0, pnumber = 0, unsafe = 0;
     
     for (i = 0; i < MAX_PROCESSES ; i++) {
         int flagOK = i;  
-        if (r_run[i] == 0) {
-            for (j = 0; j < MAX_RESOURCES; j++) {
-                 if (r_need[i][j] > r_available[j]) {
-                     flagOK = -1;
+        un
+        for (k = 0; k < MAX_PROCESSES ; k++) {
+            for (l = 0; l < MAX_RESOURCES; l++) {
+                 if (need[k][l] >= work[l]) {
+                    unsafe = 0;
                     break;
                 }
             }
+        }
+        if (finish[i] == 0) {
+            for (j = 0; j < MAX_RESOURCES; j++) {
+                 if (need[i][j] >= work[j]) {
+                    flagOK = -1;
+                    break;
+                }
+            }
+            
             if (flagOK != -1) {
-                safeorder[pnumber] = flagOK;
-                r_run[i] = 1;
-                pnumber = pnumber + 1;
+                safeorder[pnumber++] = flagOK;
                 printf("Running process P[%d]", flagOK);
                 for (j = 0; j <  MAX_RESOURCES; j++) {
-                    r_available[j] = r_available[j] + r_need[flagOK][j];
-                    printf("New availability of resource R[%d] = %d", j, r_available[j]);
+                    work[j] = work[j] + allocation[flagOK][j];
+                    printf("New availability of resource R[%d] = %d", j, work[j]);
                 }
-                i = 0;
             }
         }
     }
