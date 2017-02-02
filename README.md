@@ -5,7 +5,7 @@
 1. LS Commands
 2. Disk usage status
 3. Dining Philisphers Problem
-4. [Bankers Algorithm](https://github.com/harijithkau/s6-systems-lab/blob/master/bankers.c)
+4. [Bankers Algorithm](../blob/master/bankers.c)
 5. Cigaratte Smokers Problem
 6. LCA
 7. SleepingBarber Problem
