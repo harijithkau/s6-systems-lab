@@ -2,7 +2,7 @@
 
 Cycle
 
-*LS Commands
+1.LS Commands
 *Disk usage status
 *Dining Philisphers Problem
 *Bankers Algorithm
