@@ -5,7 +5,7 @@
 1. LS Commands
 2. Disk usage status
 3. Dining Philisphers Problem
-4. Bankers Algorithm
+4. [Bankers Algorithm](https://www.google.com)
 5. Cigaratte Smokers Problem
 6. LCA
 7. SleepingBarber Problem
