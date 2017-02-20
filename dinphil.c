@@ -25,15 +25,17 @@ int main()
     int i;
     pthread_t thread_id[N];
 	
-    sem_init(&mutex,0,1);
+    sem_init(&mutex, 0, 1);
 	
     for(i = 0; i < N; i++)
         sem_init(&S[i], 0, 0);
+	
     for(i = 0; i < N; i++)
     {
         pthread_create(&thread_id[i], NULL, philospher, &phil_num[i]);
         printf("Philosopher %d is thinking\n", i + 1);
     }
+	
     for(i = 0; i < N; i++)
         pthread_join(thread_id[i], NULL);
 }
